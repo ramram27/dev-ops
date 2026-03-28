@@ -8,15 +8,16 @@ console
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
-
+console.log('Basic route set up...');
 console.log('Setting up routes...');
-app.post('/add',(req,res) =>{
-    const {num1, num2} = req.body;
-    if(typeof num1 !== 'number' || typeof num2 !== 'number') {
-        return res.status(400).send('Invalid input. Please provide two numbers.');
+app.post('/add', (req, res) => {
+    const { a, b } = req.body;
+
+    if (typeof a !== 'number' || typeof b !== 'number') {
+        return res.status(400).json({ error: 'Invalid input' });
     }
-    
-    res.json({sum: num1 + num2});
+
+    res.json({ result: a + b });
 });
 
 app.post('/data', (req, res) => {
